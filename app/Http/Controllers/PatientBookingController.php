@@ -149,6 +149,7 @@ class PatientBookingController extends Controller
         $bookingSettings = BookingSetting::where("location_id",$location_id)->where('status',1)->first();
         $arr_values['holidays'] = $bookingSettings->holidays;
         $arr_values['year'] = $bookingSettings->year;
+        $arr_values['not_working'] = $bookingSettings->weekly_working_days;
         //var_dump($arr_values);
         return json_encode($arr_values);
 

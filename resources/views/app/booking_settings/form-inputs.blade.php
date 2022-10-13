@@ -51,15 +51,35 @@
     </x-inputs.group> --}}
 
     <x-inputs.group class="col-sm-12 col-lg-6">
-        <x-inputs.select name="weekly_working_days[]" class="select2" multiple="multiple" label="Weekly Working Days">
-            @php $selected = old('weekly_working_days', ($editing ? $bookingSetting->weekly_working_days : '')) @endphp
-            <option value="0" {{ $selected == '0' ? 'selected' : '' }} >Sunday</option>
-            <option value="1" {{ $selected == '1' ? 'selected' : '' }} >Monday</option>
-            <option value="2" {{ $selected == '2' ? 'selected' : '' }} >Tuesday</option>
-            <option value="3" {{ $selected == '3' ? 'selected' : '' }} >Wednesday</option>
-            <option value="4" {{ $selected == '4' ? 'selected' : '' }} >Thuresday</option>
-            <option value="5" {{ $selected == '5' ? 'selected' : '' }} >Friday</option>
-            <option value="6" {{ $selected == '6' ? 'selected' : '' }} >Saturday</option>
+        <x-inputs.select name="weekly_working_days[]" class="select2" multiple="multiple" label="Weekly Off Days">
+            @php
+            $arrayValue = array();
+            $arrayValue = ($editing ? json_decode($bookingSetting->weekly_working_days) : '');
+            @endphp
+
+            @if (!empty($arrayValue))
+
+                    @foreach ( $arrayValue as $value )
+                        <option value="0" {{ $value == "0" ? 'selected' : '' }}>Sunday</option>
+                        <option value="1" {{ $value == "1" ? 'selected' : '' }}>Monday</option>
+                        <option value="2" {{ $value == "2" ? 'selected' : '' }}>Tuesday</option>
+                        <option value="3" {{ $value == "3" ? 'selected' : '' }}>Wednesday</option>
+                        <option value="4" {{ $value == "4" ? 'selected' : '' }}>Thuresday</option>
+                        <option value="5" {{ $value == "5" ? 'selected' : '' }}>Friday</option>
+                        <option value="6" {{ $value == "6" ? 'selected' : '' }}>Saturday</option>
+
+                    @endforeach
+            @else
+                <option value="0">Sunday</option>
+                <option value="1">Monday</option>
+                <option value="2">Tuesday</option>
+                <option value="3">Wednesday</option>
+                <option value="4">Thuresday</option>
+                <option value="5">Friday</option>
+                <option value="6">Saturday</option>
+            @endif
+
+
         </x-inputs.select>
     </x-inputs.group>
 

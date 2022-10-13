@@ -26,15 +26,16 @@
             id="booking_date"
             name="booking_date"
             label="Booking Date"
-            :value="old('booking_slot', ($editing ? $patientBooking->booking_date : ''))"
+            :value="old('booking_date', ($editing ? $patientBooking->booking_date : ''))"
             class="datetimepicker-input"
             data-toggle="datetimepicker"
             data-target="#booking_date"
+            onchange="showBookingSlots(this.value)"
             required
         ></x-inputs.text>
     </x-inputs.group>
 
-    <x-inputs.group class="col-sm-12 col-lg-6">
+    <x-inputs.group class="col-sm-12 col-lg-12">
         <x-inputs.text
             name="booking_slot"
             label="Booking Slot"
@@ -85,6 +86,12 @@
         });
 
 
+
+        function showBookingSlots(string){
+            alert(string);
+        }
+
+
         function checkHolidays(string){
 
             var token = '<?php echo csrf_token() ?>';
@@ -111,8 +118,5 @@
         }
 
     </script>
-
-
-<div id="msg">sss</div>
 
 </div>
