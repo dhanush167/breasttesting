@@ -4,6 +4,7 @@ namespace App\Models;
 
 use App\Models\Scopes\Searchable;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class BookingSetting extends Model
@@ -33,5 +34,13 @@ class BookingSetting extends Model
     public function location()
     {
         return $this->belongsTo(Location::class);
+    }
+
+    protected function weekly_working_days(): Attribute
+    {
+        return Attribute::make(
+            get: fn ($value) => json_decode($value, true),
+            set: fn ($value) => json_encode($value),
+        );
     }
 }
