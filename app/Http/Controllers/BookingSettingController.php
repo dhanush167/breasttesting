@@ -105,9 +105,6 @@ class BookingSettingController extends Controller
         $validated = $request->validated();
         $validated['weekly_working_days'] = json_encode($request->weekly_working_days);
 
-        /* var_dump($validated['weekly_working_days']);
-        exit();
- */
         //$validated['holidays'] = json_encode($request->holidays);
 
         $bookingSetting->update($validated);
