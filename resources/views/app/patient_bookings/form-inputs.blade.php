@@ -80,7 +80,8 @@
 
         $('#booking_date').datetimepicker({
             format: 'YYYY-MM-DD',
-            disabledDates: ['2022-10-11','2022-10-14']
+            /* disabledDates: ['2022-10-11','2022-10-14'], */
+            daysOfWeekDisabled: [0, 6],
         });
 
 

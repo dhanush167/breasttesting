@@ -27,7 +27,7 @@ class BookingSettingUpdateRequest extends FormRequest
             'location_id' => ['required', 'exists:locations,id'],
             'year' => ['required', 'numeric'],
             'holidays' => ['required', 'string'],
-            'weekly_working_days' => ['required', 'string'],
+            'weekly_working_days' => ['nullable','string'],
             'day_start_time' => ['required', 'date_format:H:i:s'],
             'day_end_time' => ['required', 'date_format:H:i:s'],
             'slot_duration' => ['required', 'numeric'],

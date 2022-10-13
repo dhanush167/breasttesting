@@ -39,19 +39,30 @@
         ></x-inputs.text>
     </x-inputs.group>
 
-    <x-inputs.group class="col-sm-12 col-lg-6">
+    {{-- <x-inputs.group class="col-sm-12 col-lg-6">
         <x-inputs.text
             id="weekly_working_days"
             name="weekly_working_days"
             label="Weekly Working Days"
             :value="old('weekly_working_days', ($editing ? $bookingSetting->weekly_working_days : ''))"
             placeholder="Weekly Working Days"
-            class="datetimepicker-input"
-            data-toggle="datetimepicker"
-            data-target="#weekly_working_days"
             required
         ></x-inputs.text>
+    </x-inputs.group> --}}
+
+    <x-inputs.group class="col-sm-12 col-lg-6">
+        <x-inputs.select name="weekly_working_days[]" class="select2" multiple="multiple" label="Weekly Working Days">
+            @php $selected = old('weekly_working_days', ($editing ? $bookingSetting->weekly_working_days : '')) @endphp
+            <option value="0" {{ $selected == '0' ? 'selected' : '' }} >Sunday</option>
+            <option value="1" {{ $selected == '1' ? 'selected' : '' }} >Monday</option>
+            <option value="2" {{ $selected == '2' ? 'selected' : '' }} >Tuesday</option>
+            <option value="3" {{ $selected == '3' ? 'selected' : '' }} >Wednesday</option>
+            <option value="4" {{ $selected == '4' ? 'selected' : '' }} >Thuresday</option>
+            <option value="5" {{ $selected == '5' ? 'selected' : '' }} >Friday</option>
+            <option value="6" {{ $selected == '6' ? 'selected' : '' }} >Saturday</option>
+        </x-inputs.select>
     </x-inputs.group>
+
 
     <x-inputs.group class="col-sm-12 col-lg-6">
         <x-inputs.text
@@ -123,17 +134,17 @@
             format: 'Y',
         });
 
-        $('#weekly_working_days').datetimepicker({
-            allowMultidate: true,
-            multidateSeparator: ',',
-            format: 'dddd',
-        });
-
         $('#holidays').datetimepicker({
             allowMultidate: true,
             multidateSeparator: ',',
             format: 'YYYY-MM-DD'
-        })
+        });
+
+        $(function () {
+            $('.select2').select2()
+        });
+
+
 
 
     </script>

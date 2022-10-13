@@ -53,7 +53,7 @@ class BookingSettingController extends Controller
         $this->authorize('create', BookingSetting::class);
 
         $validated = $request->validated();
-        //$validated['holidays'] = json_encode($request->holidays);
+        $validated['weekly_working_days'] = json_encode($request->weekly_working_days);
 
         $bookingSetting = BookingSetting::create($validated);
 
@@ -103,7 +103,11 @@ class BookingSettingController extends Controller
         $this->authorize('update', $bookingSetting);
 
         $validated = $request->validated();
+        $validated['weekly_working_days'] = json_encode($request->weekly_working_days);
 
+        /* var_dump($validated['weekly_working_days']);
+        exit();
+ */
         //$validated['holidays'] = json_encode($request->holidays);
 
         $bookingSetting->update($validated);
