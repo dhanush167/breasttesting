@@ -28,9 +28,9 @@ class PatientBookingUpdateRequest extends FormRequest
             'patient_id' => ['required', 'exists:patients,id'],
             'booking_date' => ['required', 'date'],
             'booking_slot' => ['required', 'string'],
-            'booked_by' => ['required', 'string'],
-            'booked_via' => ['required', 'string'],
-            'status' => ['required', 'string'],
+            'booked_by' => ['nullable', 'string'],
+            'booked_via' => ['nullable', 'string'],
+            'status' => ['nullable', 'string'],
         ];
     }
 }

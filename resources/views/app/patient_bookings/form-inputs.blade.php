@@ -33,31 +33,7 @@
         <x-inputs.select id="booking_slot" name="booking_slot[]" class="select2" multiple="multiple" label="Booking Slot"></x-inputs.select>
     </x-inputs.group> --}}
 
-    <x-inputs.group class="col-sm-12 col-lg-12">
-        <label class="label label-required" for="booking_slot">
-            Booking Slot
-        </label>
-        <select id="booking_slot" name="booking_slot" class="form-control select2" required>
-            @php $selected = old('patient_id', ($editing ? $patientBooking->booking_slot : '')) @endphp
-        </select>
-    </x-inputs.group>
-
-
-    <x-inputs.group class="col-sm-12">
-        <x-inputs.text name="booked_by" label="Booked By" :value="old('booked_by', $editing ? $patientBooking->booked_by : '')" maxlength="255" placeholder="Booked By"
-            required></x-inputs.text>
-    </x-inputs.group>
-
-    <x-inputs.group class="col-sm-12">
-        <x-inputs.text name="booked_via" label="Booked Via" :value="old('booked_via', $editing ? $patientBooking->booked_via : '')" maxlength="255" placeholder="Booked Via"
-            required></x-inputs.text>
-    </x-inputs.group>
-
-    <x-inputs.group class="col-sm-12">
-        <x-inputs.text name="status" label="Status" :value="old('status', $editing ? $patientBooking->status : '')" placeholder="Status" required></x-inputs.text>
-    </x-inputs.group>
-
-    {{-- <div id="msg"></div> --}}
+    <x-inputs.group class="col-sm-12 col-lg-12" id="timeSlots"></x-inputs.group>
 
 </div>
 
@@ -65,7 +41,7 @@
 <script>
     $('#booking_date').datetimepicker({
         format: 'YYYY-MM-DD',
-        /* disabledDates: ['2022-10-11','2022-10-14'], */
+        disabledDates: ['2022-10-11','2022-10-14'],
         daysOfWeekDisabled: [0, 6],
     });
 
@@ -75,6 +51,7 @@
         var token = '<?php echo csrf_token(); ?>';
         var dateSelected = string;
         var location_id = $('#location_id').find(":selected").val();
+        var editing = '<?php isset($patientBooking) ?>';
 
 
         $.ajax({
@@ -83,14 +60,15 @@
             data: {
                 dateSelected: dateSelected,
                 location_id: location_id,
+                editing : editing,
                 _token: token
             },
             dataType: "json",
             success: function(data) {
-                //$("#msg").html(data);
+                $("#timeSlots").html(data);
                 /*  console.log(data); */
 
-                $("#booking_slot").empty();
+                /* $("#booking_slot").empty();
 
                 $.each(data, function(index, value) {
                     var $option = $("<option/>", {
@@ -98,7 +76,7 @@
                         text: value
                     });
                     $('#booking_slot').append($option);
-                });
+                }); */
             }
         });
 

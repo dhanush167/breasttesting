@@ -25,12 +25,12 @@
                             </li>
                             <li class="sm-display-block mt-sm-10 mb-sm-10">
                                 <!-- Modal: Appointment Starts -->
-                                <a class="bg-light p-5 text-theme-colored font-11" href="#">Register</a>
+                                <a class="bg-light p-5 text-theme-colored font-11" href="{{ route('register') }}">Register</a>
                                 <!-- Modal: Appointment End -->
                             </li>
                             <li class="sm-display-block mt-sm-10 mb-sm-10">
                                 <!-- Modal: Appointment Starts -->
-                                <a class="bg-light p-5 text-theme-colored font-11" href="#">Login</a>
+                                <a class="bg-light p-5 text-theme-colored font-11" href="{{ route('login') }}">Login</a>
                                 <!-- Modal: Appointment End -->
                             </li>
                         </ul>
@@ -171,22 +171,46 @@
                             </ul>
                         </li>
 
-                        <li><a href="{{route('get_involved')}}">Get Involved</a>
+{{--                        <li>--}}
+{{--                            <a href="{{route('get_involved')}}">--}}
+{{--                                Get--}}
+{{--                                <br>--}}
+{{--                                Involved--}}
+{{--                            </a>--}}
+{{--                            <ul class="dropdown">--}}
+{{--                                <li>--}}
+{{--                                    <a href="{{route('consumer_network')}}">--}}
+{{--                                        Volunteer Network--}}
+{{--                                    </a>--}}
+{{--                                </li>--}}
+{{--                            </ul>--}}
+{{--                        </li>--}}
+
+                        <li>
+                            <a href="#">
+                                Get
+                                <br>
+                                Updated
+                            </a>
                             <ul class="dropdown">
                                 <li>
-                                    <a href="{{route('consumer_network')}}">
-                                        Volunteer Network
+                                    <a href="{{route('institutions_with_functioning_breast_clinics_in_sri_lanka')}}">
+                                        Institutions with functioning Breast Clinics in Sri Lanka
                                     </a>
                                 </li>
-                                {{--<li><a href="#">Volunteers</a></li>--}}
+                                <li>
+                                    <a href="{{route('mammography_centers_in_sri_lanka_get_updated')}}">
+                                        Mammography Centers in Sri Lanka
+                                    </a>
+                                </li>
                             </ul>
                         </li>
 
-                        <li>
-                            <a href="#">News</a>
-                        </li>
-
-                        <li><a href="#">About Us</a>
+                        <li><a href="#">
+                                About
+                                <br>
+                                Us
+                            </a>
                             <ul class="dropdown">
                                 <li>
                                     <a href="{{route('our_programme')}}">

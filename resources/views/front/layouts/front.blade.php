@@ -177,8 +177,14 @@
                     <h5 class="widget-title line-bottom-theme-colored-2">Opening Hours</h5>
                     <div class="opening-hours">
                         <ul class="list list-border">
-                            <li class="clearfix"> <span class="text-theme-color-2"><i class="fa fa-clock-o mr-5"></i> Monday to Friday  </span>
-                                <div class="value pull-right text-white"> 9.00 am - 3.00 pm </div>
+                            <li class="clearfix">
+                                <span class="text-theme-color-2"><i class="fa fa-clock-o mr-5"></i>
+                                    Monday to Friday
+                                </span>
+                                <br>
+                                <div class="text-white">
+                                    9.00 am - 3.00 pm
+                                </div>
                             </li>
                             <li>
                                 Closed on weekends and public holidays

@@ -62,7 +62,9 @@ class PatientBookingController extends Controller
         $this->authorize('create', PatientBooking::class);
 
         $validated = $request->validated();
-        /* $validated['booking_slot'] = json_encode($request->booking_slot); */
+        $validated['booked_by'] = auth()->user()->name;
+        $validated['booked_via'] = 'Hospital';
+        $validated['status'] = 1;
 
         $patientBooking = PatientBooking::create($validated);
 
@@ -113,7 +115,9 @@ class PatientBookingController extends Controller
         $this->authorize('update', $patientBooking);
 
         $validated = $request->validated();
-        /* $validated['booking_slot'] = json_encode($request->booking_slot); */
+        $validated['booked_by'] = auth()->user()->name;
+        $validated['booked_via'] = 'Hospital';
+        $validated['status'] = 1;
 
         $patientBooking->update($validated);
 
@@ -161,20 +165,23 @@ class PatientBookingController extends Controller
         $allSlots = array();
 
 
-
         $dateSelected = $request->dateSelected;
         $location_id = $request->location_id;
+        $editing = $request->editing;
         $allSlots = $slotGenerator->bookingSlots($location_id);
         //array_push($allSlots,$slotGenerator->bookingSlots($location_id));
         $getBookedSlots = PatientBooking::where('location_id',$location_id)->where('booking_date',$dateSelected)->where('status','1')->get();
 
-        foreach($getBookedSlots as $booked){
+        /* foreach($getBookedSlots as $booked){
              array_push($bookedSlots,$booked->booking_slot);
         }
 
-        $avilableSlots = array_diff($allSlots, $bookedSlots);
+        $avilableSlots = array_diff($allSlots, $bookedSlots); */
 
-        return json_encode($bookedSlots);
+        $returnHTML = view('app.patient_bookings.timeslots',compact('allSlots','getBookedSlots','editing'))->render();
+        return response()->json($returnHTML);
+
+        //return json_encode($allSlots);
     }
 
 }

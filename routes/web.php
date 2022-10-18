@@ -154,3 +154,7 @@ Route::get('/Videos',[LandingPageController::class,'Videos'])->name('resources.V
 Route::get('/locations',[LandingPageController::class,'locations'])->name('locations');
 Route::get('/contact',[LandingPageController::class,'contact'])->name('contact');
 
+/*get updated*/
+Route::get('/institutions-with-functioning-breast-clinics-in-sri-lanka',[LandingPageController::class,'institutions_with_functioning_breast_clinics_in_sri_lanka'])->name('institutions_with_functioning_breast_clinics_in_sri_lanka');
+Route::get('/mammography-centers-in-sri-lanka',[LandingPageController::class,'mammography_centers_in_sri_lanka_get_updated'])->name('mammography_centers_in_sri_lanka_get_updated');
+
