@@ -96,6 +96,8 @@ Route::prefix('/admin')
 
         Route::post('/getLocationHolidays',[PatientBookingController::class, 'loadHolydays'])->name('location.hollidays');
 
+        Route::post('/getAvailableSlots',[PatientBookingController::class, 'loadAvailableBookingSlots'])->name('availableslots');
+
     });
 
 

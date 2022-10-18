@@ -28,10 +28,6 @@ class PatientBookingController extends Controller
             ->paginate(5)
             ->withQueryString();
 
-
-            /* $SlotGenerator = new SlotGenerator();
-            var_dump($SlotGenerator->bookingSlots(1)); */
-
          return view(
             'app.patient_bookings.index',
             compact('patientBookings', 'search')
@@ -66,6 +62,7 @@ class PatientBookingController extends Controller
         $this->authorize('create', PatientBooking::class);
 
         $validated = $request->validated();
+        /* $validated['booking_slot'] = json_encode($request->booking_slot); */
 
         $patientBooking = PatientBooking::create($validated);
 
@@ -116,6 +113,7 @@ class PatientBookingController extends Controller
         $this->authorize('update', $patientBooking);
 
         $validated = $request->validated();
+        /* $validated['booking_slot'] = json_encode($request->booking_slot); */
 
         $patientBooking->update($validated);
 
@@ -153,6 +151,30 @@ class PatientBookingController extends Controller
         //var_dump($arr_values);
         return json_encode($arr_values);
 
+    }
+
+    public function loadAvailableBookingSlots(Request $request){
+
+        $slotGenerator = new SlotGenerator();
+
+        $bookedSlots = array();
+        $allSlots = array();
+
+
+
+        $dateSelected = $request->dateSelected;
+        $location_id = $request->location_id;
+        $allSlots = $slotGenerator->bookingSlots($location_id);
+        //array_push($allSlots,$slotGenerator->bookingSlots($location_id));
+        $getBookedSlots = PatientBooking::where('location_id',$location_id)->where('booking_date',$dateSelected)->where('status','1')->get();
+
+        foreach($getBookedSlots as $booked){
+             array_push($bookedSlots,$booked->booking_slot);
+        }
+
+        $avilableSlots = array_diff($allSlots, $bookedSlots);
+
+        return json_encode($bookedSlots);
     }
 
 }
