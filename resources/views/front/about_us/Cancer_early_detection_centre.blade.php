@@ -17,7 +17,6 @@
         </div>
     </section>
 
-
     <section id="education" class="bg-silver-light">
         <div class="container">
             <div class="section-content">

@@ -45,11 +45,12 @@ use App\Http\Controllers\LandingPageController;
 
 Auth::routes();
 
-Route::get('/home', [HomeController::class, 'index'])->name('home');
+
 
 Route::prefix('/admin')
-    ->middleware('auth')
+    ->middleware(['auth', 'user-access:admin'])
     ->group(function () {
+        Route::get('dashboard', [HomeController::class, 'index'])->name('dashboard');
         Route::resource('roles', RoleController::class);
         Route::resource('permissions', PermissionController::class);
 
@@ -101,6 +102,15 @@ Route::prefix('/admin')
     });
 
 
+    Route::middleware(['auth', 'user-access:patient'])->group(function () {
+        Route::get('/client-feedback',[LandingPageController::class,'client_feedback'])->name('client_feedback');
+        /*resources*/
+        Route::get('/Institutions-with-functioning-Breast-Clinics', [LandingPageController::class,'Institutions_with_functioning_Breast_Clinics'])->name('resources.institutions_with_functioning');
+        Route::get('/Mammography-Centers-in-Sri-lanka', [LandingPageController::class,'Mammography_Centers_in_Sri_lanka'])->name('resources.Mammography_Centers_in_Sri_lanka');
+        Route::get('/Videos',[LandingPageController::class,'Videos'])->name('resources.Videos');
+    });
+
+
 
     /*home page*/
 Route::get('/',[LandingPageController::class,'index'])->name('front');
@@ -117,7 +127,7 @@ Route::get('/should-i-be-screened',[LandingPageController::class,'should_i_be_sc
 Route::get('/the-cope-of-our-program',[LandingPageController::class,'the_scope_of_our_program'])->name('the_scope_of_our_program');
 Route::get('/at-screening',[LandingPageController::class,'at_screening'])->name('at_screening');
 Route::get('/after-screening',[LandingPageController::class,'after_screening'])->name('after_screening');
-Route::get('/client-feedback',[LandingPageController::class,'client_feedback'])->name('client_feedback');
+
 Route::get('/your-stories',[LandingPageController::class,'your_stories'])->name('your_stories');
 
 /*Breast Cancer and Screening*/
@@ -145,16 +155,13 @@ Route::get('/our-purpose',[LandingPageController::class,'our_purpose'])->name('o
 Route::get('/cancer-early-detection-centre',[LandingPageController::class,'cancer_early_detection_centre'])->name('cancer_early_detection_centre');
 Route::get('/governance',[LandingPageController::class,'governance'])->name('governance');
 
-/*resources*/
-Route::get('/Institutions-with-functioning-Breast-Clinics', [LandingPageController::class,'Institutions_with_functioning_Breast_Clinics'])->name('resources.institutions_with_functioning');
-Route::get('/Mammography-Centers-in-Sri-lanka', [LandingPageController::class,'Mammography_Centers_in_Sri_lanka'])->name('resources.Mammography_Centers_in_Sri_lanka');
-Route::get('/Videos',[LandingPageController::class,'Videos'])->name('resources.Videos');
+
 
 /*locations*/
 Route::get('/locations',[LandingPageController::class,'locations'])->name('locations');
 Route::get('/contact',[LandingPageController::class,'contact'])->name('contact');
 
 /*get updated*/
-Route::get('/institutions-with-functioning-breast-clinics-in-sri-lanka',[LandingPageController::class,'institutions_with_functioning_breast_clinics_in_sri_lanka'])->name('institutions_with_functioning_breast_clinics_in_sri_lanka');
-Route::get('/mammography-centers-in-sri-lanka',[LandingPageController::class,'mammography_centers_in_sri_lanka_get_updated'])->name('mammography_centers_in_sri_lanka_get_updated');
+/* Route::get('/institutions-with-functioning-breast-clinics-in-sri-lanka',[LandingPageController::class,'institutions_with_functioning_breast_clinics_in_sri_lanka'])->name('institutions_with_functioning_breast_clinics_in_sri_lanka');
+Route::get('/mammography-centers-in-sri-lanka',[LandingPageController::class,'mammography_centers_in_sri_lanka_get_updated'])->name('mammography_centers_in_sri_lanka_get_updated'); */
 

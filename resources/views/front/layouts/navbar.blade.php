@@ -23,6 +23,29 @@
                                 <a class="bg-light p-5 text-theme-colored font-11" href="{{route('contact')}}">Contact</a>
                                 <!-- Modal: Appointment End -->
                             </li>
+
+                            @auth
+                            <li class="sm-display-block mt-sm-10 mb-sm-10">
+                                <a class="bg-light p-5 text-theme-colored font-11" href="#">Welcome {{ auth()->user()->name }}</a>
+                            </li>
+
+                            <li class="sm-display-block mt-sm-10 mb-sm-10">
+                                <a class="bg-light p-5 text-theme-colored font-11" href="#">Dashboard</a>
+                            </li>
+
+                                <li class="sm-display-block mt-sm-10 mb-sm-10">
+                                    <a class="bg-light p-5 text-theme-colored font-11" href="{{ route('logout') }}"
+                                        onclick="event.preventDefault(); document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </li>
+                            @endauth
+
+                            @guest
                             <li class="sm-display-block mt-sm-10 mb-sm-10">
                                 <!-- Modal: Appointment Starts -->
                                 <a class="bg-light p-5 text-theme-colored font-11" href="{{ route('register') }}">Register</a>
@@ -33,6 +56,7 @@
                                 <a class="bg-light p-5 text-theme-colored font-11" href="{{ route('login') }}">Login</a>
                                 <!-- Modal: Appointment End -->
                             </li>
+                            @endguest
                         </ul>
                     </div>
                 </div>
@@ -163,11 +187,11 @@
                                         Mammography Centers in Sri Lanka
                                     </a>
                                 </li>
-                                <li>
+                                {{-- <li>
                                     <a href="{{route('resources.Videos')}}">
                                     Videos
                                     </a>
-                                </li>
+                                </li> --}}
                             </ul>
                         </li>
 
@@ -192,7 +216,7 @@
                                 <br>
                                 Updated
                             </a>
-                            <ul class="dropdown">
+                            {{-- <ul class="dropdown">
                                 <li>
                                     <a href="{{route('institutions_with_functioning_breast_clinics_in_sri_lanka')}}">
                                         Institutions with functioning Breast Clinics in Sri Lanka
@@ -203,7 +227,7 @@
                                         Mammography Centers in Sri Lanka
                                     </a>
                                 </li>
-                            </ul>
+                            </ul> --}}
                         </li>
 
                         <li><a href="#">

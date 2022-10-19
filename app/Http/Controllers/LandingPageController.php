@@ -197,4 +197,9 @@ class LandingPageController extends Controller
    }
 
 
+   public function patientProfile(){
+    
+   }
+
+
 }

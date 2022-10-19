@@ -1630,7 +1630,7 @@ section > .container-fluid {
   border-radius: 0;
   box-shadow: none;
   height: 45px;
-  border: 1px solid #eeeeee;
+  border: 1px solid #ccc;
 }
 label {
   font-weight: normal;

@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
+use App\Models\Patient;
 use App\Providers\RouteServiceProvider;
 use App\Models\User;
 use Illuminate\Foundation\Auth\RegistersUsers;
@@ -52,6 +53,11 @@ class RegisterController extends Controller
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'phone_no' => ['required', 'string', 'max:255', 'unique:users'],
+            'age' => ['required'],
+            'gender' => ['required'],
+            'marital_status' => ['required'],
+            'address' => ['required', 'string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
         ]);
     }
@@ -64,10 +70,24 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
-        return User::create([
+        $user = User::create([
             'name' => $data['name'],
             'email' => $data['email'],
+            'phone_no' => $data['phone_no'],
+            'user_type' => $data['user_type'],
             'password' => Hash::make($data['password']),
         ]);
+
+        Patient::create([
+            'user_id' => $user->id,
+            'reg_date' => date('Y-m-d'),
+            'age' => $data['age'],
+            'gender' => $data['gender'],
+            'marital_status' => $data['marital_status'],
+            'address' => $data['address'],
+        ]);
+
+        return $user;
+
     }
 }

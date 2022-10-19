@@ -1,7 +1,5 @@
 <!DOCTYPE html>
 <html dir="ltr" lang="en">
-
-<!-- Mirrored from kodesolution.com/html/2016/medikal-html/demo/index-mp-layout4.html by HTTrack Website Copier/3.x [XR&CO'2014], Mon, 03 Oct 2022 09:18:02 GMT -->
 <head>
 
     <!-- Meta Tags -->
