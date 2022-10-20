@@ -108,6 +108,10 @@ Route::prefix('/admin')
         Route::get('/Institutions-with-functioning-Breast-Clinics', [LandingPageController::class,'Institutions_with_functioning_Breast_Clinics'])->name('resources.institutions_with_functioning');
         Route::get('/Mammography-Centers-in-Sri-lanka', [LandingPageController::class,'Mammography_Centers_in_Sri_lanka'])->name('resources.Mammography_Centers_in_Sri_lanka');
         Route::get('/Videos',[LandingPageController::class,'Videos'])->name('resources.Videos');
+        Route::get('/profile',[LandingPageController::class,'patientProfile'])->name('patient.profile');
+
+        /** Start my brest check */
+        Route::get('/check-at-home',[LandingPageController::class,'checkAtHome'])->name('brestcheck.at_home');
     });
 
 

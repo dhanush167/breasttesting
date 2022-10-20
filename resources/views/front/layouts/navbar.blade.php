@@ -30,7 +30,7 @@
                             </li>
 
                             <li class="sm-display-block mt-sm-10 mb-sm-10">
-                                <a class="bg-light p-5 text-theme-colored font-11" href="#">Dashboard</a>
+                                <a class="bg-light p-5 text-theme-colored font-11" href="{{route('patient.profile')}}">Dashboard</a>
                             </li>
 
                                 <li class="sm-display-block mt-sm-10 mb-sm-10">
@@ -131,7 +131,7 @@
                             </a>
                             <ul class="dropdown">
                                 <li>
-                                    <a href="#">
+                                    <a href="{{ route('brestcheck.at_home') }}">
                                         Start your
                                         breast check at
                                         home

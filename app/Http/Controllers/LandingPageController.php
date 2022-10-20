@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Patient;
+use App\Models\PatientBooking;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LandingPageController extends Controller
 {
@@ -196,10 +200,32 @@ class LandingPageController extends Controller
        return view('front.get_updated.mammography_centers_in_sri_lanka');
    }
 
+   public function checkAtHome(){
+        return view('front.brest_checking.check_at_home');
+   }
+
+   /**
+    * Manage Patient Profile
+    */
 
    public function patientProfile(){
-    
+
+        $user_id = Auth::user()->id;
+        //echo $user_id;
+
+        $userDetails = User::where('id',$user_id)->first();
+        $patientDetails = Patient::where('user_id',$user_id)->first();
+        $patientBookingDetails = PatientBooking::where('patient_id',$patientDetails->id)->first();
+
+        return view('front.profile.dashboard',compact('userDetails','patientDetails','patientBookingDetails'));
+
    }
+
+   public function bookAppointment(){
+
+   }
+
+
 
 
 }
