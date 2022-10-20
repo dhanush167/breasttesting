@@ -139,14 +139,33 @@
                 </div>
 
                 <div class="row">
-                    <div class="col-md-6">
-                        <video id="my-video" class="video-js" controls preload="auto" width="640" height="264"
-                            poster="{{ asset('videos/at_screening/doctor.mp4') }}MY_VIDEO_POSTER.jpg" data-setup="{}">
-                            <source src="MY_VIDEO.mp4" type="video/mp4" />
+                    <div class="col-md-4" style="margin-bottom: 20px;">
+                        <video id="my-video" class="video-js vjs-fluid" controls preload="auto"
+                            poster="{{ asset('videos/at_screening/doctor.png') }}" data-setup="{'controls': true, 'autoplay': false, 'preload': 'auto', 'responsive': true}">
+                            <source src="{{ asset('videos/at_screening/doctor.mp4') }}" type="video/mp4" />
                             <source src="MY_VIDEO.webm" type="video/webm" />
-
                         </video>
                     </div>
+
+                    <div class="col-md-4" style="margin-bottom: 20px;">
+                        <video id="my-video1" class="video-js vjs-fluid" controls preload="auto"
+                            poster="{{ asset('videos/at_screening/nurse1.png') }}" data-setup="{'controls': true, 'autoplay': false, 'preload': 'auto', 'responsive': true}">
+                            <source src="{{ asset('videos/at_screening/nurse1.mp4') }}" type="video/mp4" />
+                            <source src="MY_VIDEO.webm" type="video/webm" />
+                        </video>
+                    </div>
+                    <div class="col-md-4" style="margin-bottom: 20px;">
+                        <video id="my-video2" class="video-js vjs-fluid" controls preload="auto"
+                            poster="{{ asset('videos/at_screening/nurse2.png') }}" data-setup="{'controls': true, 'autoplay': false, 'preload': 'auto', 'responsive': true}">
+                            <source src="{{ asset('videos/at_screening/nurse2.mp4') }}" type="video/mp4" />
+                            <source src="MY_VIDEO.webm" type="video/webm" />
+                        </video>
+                    </div>
+
+                </div>
+
+                <div class="row">
+
                 </div>
 
             </div>
